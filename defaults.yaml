@@ -1,0 +1,44 @@
+from: markdown
+to: pdf
+pdf-engine: xelatex
+template: template.tex
+top-level-division: chapter
+filters:
+  - pandoc-crossref
+  - citeproc
+  - split-sections.lua
+bibliography: references.bib
+csl: apa.csl
+standalone: true
+output-file: report.pdf
+number-sections: true
+resource-path:
+  - src
+metadata:
+  author: "Your Name"
+  city: "City (Country)"
+  title: "Thesis Title"
+  subtitle: "Subtitle"
+  year: "2026"
+  defensedate: "February 10th, 2026"
+  defenselocation: "Defense Location"
+  extexpert: "Dr. External Expert"
+  indpartner: "Crazy Company Inc."
+  studyprogram: "Your Study Program"
+  supervisor: "Dr. Your Supervisor"
+  dean: "Prof. Your Dean"
+
+  reference-section-title: "Bibliography"
+
+  figureTitle: "Figure"
+  tableTitle: "Table"
+  listingTitle: "Listing"
+  figPrefix: "Figure"
+  eqnPrefix: "Equation"
+  tblPrefix: "Table"
+  lstPrefix: "Listing"
+  secPrefix: "Section"
+variables:
+  fontsize: 11pt
+  tables: true
+  secnumdepth: 4

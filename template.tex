@@ -1,0 +1,208 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% (c) Lucerne University of Applied Sciences and Arts
+%
+% HSLU-I: Official Thesis Template
+%
+% This template complies with the official thesis guidelines released
+% on complesis by the department HSLU-I (computer science).
+% It supports the languages english and german. The language and thesis style
+% can be set by the parameters passed to the documentclass on line 33.
+%
+% NOTE: The class and style sheets (hsluthesis.cls, hsluthesisterms.sty) should
+%       NOT be changed. These are configuration files and define the document style.
+%
+% Original guidelines can be found on complesis:
+% https://complesis.hslu.ch/
+%
+% Original author:
+%   Ramón Christen HSLU-I
+%
+% Versions:
+%   v1.0    21-03-2025: Initial Version
+%   v2.0    22-09-2025: Reviewed template structure (.cls added); Extension for continuous education
+%   v2.1    29-09-2025: Extended for WIPRO
+%   v2.2    10-10-2025: Minor corrections for WIPRO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+% class options (set in \documentclass[...]; order of options is irrelevant):
+%   degree:       [wipro, bachelor, master, cas, sas]
+%   language:     [english, german]
+%   groupwork:    [groupwork] (extends declaration for two students)
+%   ip:           [noip] (only for cas/sas if no intellectual property consent is required)
+%
+% Examples for configuring the documentclass:
+% \documentclass[german,master]{hsluthesis}
+% \documentclass[english,bachelor]{hsluthesis}
+% \documentclass[german,wipro,groupwork]{hsluthesis}
+% \documentclass[english,cas,noip]{hsluthesis}
+\documentclass[english,bachelor]{hsluthesis}
+
+
+\usepackage{comment}                            % having comment sections \begin{comment} \end{comment}
+\usepackage{amsmath}							% math package
+\usepackage{amsfonts}							% font package for math symbols
+\usepackage{amssymb}							% symbols package - definition of math symbols
+\usepackage{listings}							% package for code representation
+\usepackage{graphicx}							% for inclusion of image
+\usepackage{subfig}								% to arrange figures next to each other
+\usepackage{float}								% text style surrounding images
+\usepackage[acronym]{glossaries}         		% package for glossary
+\usepackage{tikz}								% used to place logos on title page
+% \usepackage{gensymb}							% for special characters such as °
+\usepackage[a-1a]{pdfx}                         % Forces PDF/A-1a compliance for long-term archiving
+\usepackage{fancyhdr}							% for custom headers and footers
+
+\usepackage{multirow}
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{tikzscale}
+
+% CSLReferences environment for bibliography
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+    \let\oldpar\par
+    \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\baselineskip}
+  % Redefine \bibitem to work without list environment
+  \renewcommand{\bibitem}[2][]{\par}
+ }%
+ {}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\hypersetup{hidelinks}                          % hide red border in hyperlinks
+\setcounter{tocdepth}{1}                        % hide subsections from TOC
+\makenoidxglossaries
+\input{acronyms}                                % include acronyms.txt file
+\input{glossary}                                % include glossary.txt file
+\graphicspath{{figs/}}						    % set path of graphics folder
+
+% Define page styles for proper page numbering
+\pagestyle{fancy}
+\fancyhf{}                                      % clear all header and footer fields
+\fancyfoot[C]{\thepage}                         % centered page number at bottom
+\renewcommand{\headrulewidth}{0pt}              % remove header rule
+\renewcommand{\footrulewidth}{0pt}              % remove footer rule
+
+% Also apply to plain style (used for chapter pages)
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+
+%%----------------------------------------------------------------------------------------
+%%	PDF/A DOCUMENT COMPLIANCE
+%%----------------------------------------------------------------------------------------
+%\pdfcatalog{
+%  /StructTreeRoot <<                            % Define the structure tree root for document tagging
+%    /Type /StructTreeRoot                       % Specify that this is a structure tree root
+%    /K []                                       % Placeholder for structure elements (empty for now)
+%  >>
+%  /MarkInfo << /Marked true >>                  % Ensure the document is marked as tagged for accessibility
+%}
+
+
+\begin{document}
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+%\thesisLanguage{english}                        % set thesis language [english, german]
+\author{$author$}                            % author name
+\city{$city$}                    % author's place of origin
+\title{$title$}                            % thesis title
+\subtitle{\large $subtitle$}                      % thesis subtitle
+
+\date{$year$}                                     % the year when the thesis was written (used in titlepage)
+\defensedate{$defensedate$}                % the date of the private defense
+\defencelocation{$defenselocation$}                       % location of defence
+\extexpert{$extexpert$}                         % name of external expert
+\indpartner{$indpartner$}                       % name of industry partner
+\studyprogram{$studyprogram$}                    % name of study program: Business Information Technology, International IT Management, ...
+
+% jury, supervisor and dean are only relevant if acceptance sheet is enabled with the next line
+% \addAcceptsheet
+\jury{                                          % members of the jury
+    \begin{itemize}
+        \item Prof. Dr. Name Surname from Lucerne University of Applied Sciences and Arts, Switzerland (President of the Jury);
+        \item Prof. Dr. Name Surname from Lucerne University of Applied Sciences and Arts, Switzerland (Thesis Supervisor);
+        \item Prof. Dr. Name Surname from Lucerne University of Applied Sciences and Arts, Switzerland (External Expert).
+    \end{itemize}
+}
+
+\supervisor{$supervisor$}             % name of supervisor
+\dean{$dean$}                   % name of faculty dean
+
+\acknowledgments{Thanks to my family, relatives and firends for all the support given to finish this thesis.}
+
+
+
+%----------------------------------------------------------------------------------------
+%	BEGIN DOCUMENT AND CREATE TITLEPAGE
+%----------------------------------------------------------------------------------------
+\maketitle
+
+
+%----------------------------------------------------------------------------------------
+%	PREAMBLE
+%----------------------------------------------------------------------------------------
+$if(abstract)$
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+$abstract$
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+$endif$
+
+\tableofcontents
+
+%----------------------------------------------------------------------------------------
+%	MAIN CONTENT
+%----------------------------------------------------------------------------------------
+\mainmatter                                     % Start main content with arabic page numbers
+\pagenumbering{arabic}                          % Arabic numerals for main content
+\setcounter{page}{1}                            % Reset counter to 1
+
+$body$
+
+$if(appendix)$
+$appendix$
+$endif$
+
+\listoffigures
+\addcontentsline{toc}{chapter}{\listfigurename}
+
+\listoftables
+\addcontentsline{toc}{chapter}{\listtablename}
+
+\printnoidxglossary[type=main,title=Glossary]
+\addcontentsline{toc}{chapter}{Glossary}
+
+\printnoidxglossary[type=\acronymtype,title=Acronyms]
+\addcontentsline{toc}{chapter}{Acronyms}
+
+\glsaddallunused
+
+
+$if(bibliography)$
+$bibliography$
+$endif$
+
+\end{document}
